@@ -42,6 +42,26 @@
   cursor: pointer;
 }
 
+.submitButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.statusMessage {
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.successText {
+  color: #34d399;
+}
+
+.errorText {
+  color: #f87171;
+}
+
 .helperText {
   margin-top: 16px;
   max-width: 576px;

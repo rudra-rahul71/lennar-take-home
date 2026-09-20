@@ -39,6 +39,8 @@ src/
 ├── pages/
 │   └── HomePage/            # Home page composition
 ├── router/                  # createBrowserRouter route tree definition
+├── services/
+│   └── trial.service.ts     # Angular-style TrialService class & root singleton
 └── styles/
     └── main.css             # Global tokens, box-sizing reset, and base styles
 ```
@@ -71,6 +73,17 @@ The application strictly implements the 4 responsive breakpoint states:
   * Tapping the overlay or any navigation link automatically closes the menu.
 * **Illustration Container**:
   * Fixed height of `624px` with `overflow: clip`, scaling fluidly with column width.
+
+---
+
+## Bonus: GraphQL Mutation & Service Architecture
+
+The "Start free trial" action is implemented using a GraphQL mutation connected to the dummy endpoint (`https://graphqlzero.almansi.me/api`):
+
+* **Service Class Pattern (`TrialService`)**: Modeled after Angular's injectable service architecture (`src/services/trial.service.ts`). Encapsulates the `createUser` GraphQL mutation (`POST` request with typed variables) and exposes a root singleton instance `trialService`.
+* **Zero External Dependencies**: Implemented using native `fetch` rather than adding bulky client libraries (Apollo / URQL).
+* **State Management & Feedback**: Handles reactive `idle`, `loading`, `success`, and `error` states with accessible status announcements (`role="status"` and `role="alert"`). The submit button disables during network dispatch and displays dynamic status text (`"Starting..."`).
+* **Header & Drawer CTA Linking**: Clicking "Start free trial" in the desktop Navbar or the Mobile Drawer smoothly scrolls and focuses the Hero email input field.
 
 ---
 

@@ -8,6 +8,14 @@ import styles from './Navbar.module.css';
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleTrialClick = () => {
+    const input = document.getElementById('hero-email-input');
+    if (input) {
+      input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      input.focus();
+    }
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.navContainer}>
@@ -33,7 +41,11 @@ export function Navbar() {
           <a href="#login" className={styles.navLink}>
             Log in
           </a>
-          <button type="button" className={styles.trialButton}>
+          <button
+            type="button"
+            className={styles.trialButton}
+            onClick={handleTrialClick}
+          >
             Start free trial
           </button>
         </div>

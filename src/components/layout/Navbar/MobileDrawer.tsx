@@ -9,6 +9,15 @@ interface MobileDrawerProps {
 }
 
 export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
+  const handleTrialClick = () => {
+    onClose();
+    const input = document.getElementById('hero-email-input');
+    if (input) {
+      input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      input.focus();
+    }
+  };
+
   return (
     <>
       {/* Semi-transparent backdrop overlay (Task 1.3) */}
@@ -51,7 +60,11 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
           ))}
         </nav>
 
-        <button type="button" className={styles.ctaButton}>
+        <button
+          type="button"
+          className={styles.ctaButton}
+          onClick={handleTrialClick}
+        >
           Start free trial
         </button>
 
