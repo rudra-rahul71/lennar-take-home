@@ -1,0 +1,99 @@
+.header {
+  width: 100%;
+  padding-top: 24px;
+}
+
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 42px;
+  /* Height matching action button to total 66px with 24px top padding */
+}
+
+.leftSection,
+.desktopNav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.logoLink {
+  display: inline-flex;
+}
+
+.logo {
+  /* Conflation of spec. 43.75px vs 44px */
+  width: 44px;
+  height: 40px;
+}
+
+.navLink {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--color-white);
+  text-decoration: none;
+  transition: opacity 150ms ease;
+}
+
+.navLink:hover {
+  opacity: 0.8;
+}
+
+.actionsGroup {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+
+.trialButton {
+  background-color: var(--color-gray-600);
+  color: var(--color-white);
+  padding: 9px 17px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 150ms ease;
+}
+
+.trialButton:hover {
+  opacity: 0.9;
+}
+
+/* Mobile trigger placeholder (Task 1.1) */
+.hamburgerButton {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburgerIcon {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 833px) {
+  .logo {
+    width: 35px;
+    height: 32px;
+  }
+
+  .desktopNav,
+  .actionsGroup {
+    display: none;
+  }
+
+  .hamburgerButton {
+    display: flex;
+  }
+}
