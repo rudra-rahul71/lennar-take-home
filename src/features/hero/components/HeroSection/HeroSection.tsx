@@ -1,5 +1,6 @@
 import heroIllustration from '../../../../assets/hero.png';
 import { CalloutBadge } from '../CalloutBadge/CalloutBadge';
+import { HeroForm } from '../HeroForm/HeroForm';
 import { HeroHeading } from '../HeroHeading/HeroHeading';
 import styles from './HeroSection.module.css';
 
@@ -11,7 +12,7 @@ export function HeroSection() {
         <div className={styles.contentColumn}>
           <CalloutBadge />
           <HeroHeading />
-          {/* Form will be mounted here */}
+          <HeroForm />
         </div>
 
         {/* Right Column: Illustration */}

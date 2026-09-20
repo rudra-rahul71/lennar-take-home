@@ -1,0 +1,90 @@
+.formWrapper {
+  margin-top: 48px;
+  max-width: 576px;
+}
+
+/* Desktop: Horizontal layout */
+.form {
+  display: flex;
+  gap: 12px;
+}
+
+.input {
+  flex: 1;
+  max-width: 425px;
+  height: 48px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  background-color: var(--color-white);
+  border: none;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-gray-900);
+}
+
+.input::placeholder {
+  color: var(--color-gray-500);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.submitButton {
+  width: 139px;
+  height: 48px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  background-color: var(--color-indigo-500);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+  color: var(--color-white);
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+}
+
+.helperText {
+  margin-top: 16px;
+  max-width: 576px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--color-gray-300);
+}
+
+.termsLink {
+  color: var(--color-white);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* Mobile Layout (< 834px): Stacked and 100% width */
+@media (max-width: 833px) {
+
+  /* Spec states 344px (full) confusing language here. standard would be to take full width. matches Mockup provided */
+  .formWrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .form {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .input {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .submitButton {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .helperText {
+    width: 100%;
+    max-width: 100%;
+  }
+}
