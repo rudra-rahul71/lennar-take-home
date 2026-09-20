@@ -4,7 +4,7 @@ export function HeroHeading() {
   return (
     <>
       <h1 className={styles.heading}>
-        <span className={styles.line}>A better way to</span>
+        <span>A better way to</span>
         <span className={styles.highlight}>ship web apps</span>
       </h1>
       <p className={styles.bodyCopy}>

@@ -1,75 +1,101 @@
-# React + TypeScript + Vite
+# Responsive Hero & Navigation Web Task
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A production-ready responsive home page and navigation bar built with **React 19**, **TypeScript**, and **Vite**, adhering strictly to the candidate design specification without third-party UI component libraries.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack & Core Decisions
 
-## React Compiler
+* **Framework**: [React 19](https://react.dev/) + [Vite](https://vite.dev/)
+* **Language**: [TypeScript](https://www.typescriptlang.org/) for compile-time type safety and robust component contracts.
+* **Routing**: [React Router v7](https://reactrouter.com/) implementing a root layout shell pattern (`<RootLayout />` with `<Outlet />`).
+* **Styling (No UI Libraries)**: 
+  * **Design Tokens**: Centralized CSS custom properties in `:root` (`src/styles/main.css`) capturing all color palettes (`#111827`, `#6366F1`, `#818CF8`, `#D1D5DB`, etc.) and typography scales.
+  * **Component Scoping**: **CSS Modules** (`*.module.css`) providing native view encapsulation with zero runtime overhead or CSS namespace collisions.
+* **Typography**: Google Font **Inter** (weights 400, 500, 800) with preconnect optimization.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Architectural Highlights
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```text
+src/
+├── assets/                  # Brand assets (logo, menu, close, chevron, hero illustration)
+├── components/
+│   ├── common/
+│   │   └── Container/       # Responsive max-width container (Task 4.1)
+│   └── layout/
+│       ├── Navbar/          # Desktop navigation & mobile trigger
+│       │   ├── MobileDrawer/# Animated slide-down drawer & backdrop overlay (Tasks 1.2 & 1.3)
+│       │   └── Navbar.data  # Single source of truth for navigation links
+│       └── RootLayout/      # Layout shell rendering <Navbar /> and <Outlet />
+├── features/
+│   └── hero/
+│       └── components/
+│           ├── CalloutBadge/# "WE'RE HIRING" callout pill with chevron
+│           ├── HeroHeading/ # Display headline & supporting copy
+│           ├── HeroForm/    # Responsive email input, submit button & legal copy
+│           └── HeroSection/ # Two-column layout & scaling illustration container
+├── pages/
+│   └── HomePage/            # Home page composition
+├── router/                  # createBrowserRouter route tree definition
+└── styles/
+    └── main.css             # Global tokens, box-sizing reset, and base styles
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Responsive Breakpoints & Specification Alignment
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+The application strictly implements the 4 responsive breakpoint states:
 
+| Breakpoint | Layout Behavior | Specifications Enforced |
+| :--- | :--- | :--- |
+| **Mobile (`376px`)** | Single column (stacked) | Logo `35×32px` at 16px gutter; `40×40px` tap-target hamburger; full-width stacked form; illustration below content; slide-down white menu drawer with whitish overlay. |
+| **Tablet (`834px`)** | 2-column layout | Content left, illustration right; full horizontal nav with 32px link gap; container flush to edges. |
+| **Laptop (`1080px`)** | 2-column layout | Content `492px`, Illustration `492px`; horizontal form row (max 576px); centered container. |
+| **Desktop (`1358px`)**| 2-column layout | Content `592px`, Illustration `592px`; inner container capped at `1280px` max-width with `39px` side padding (Task 4.1). |
+
+---
+
+## Motion & Interaction Specifications
+
+* **Mobile Menu Open (Task 1.1 $\rightarrow$ 1.2)**: 
+  * Slides down into view from top (`translateY(0)`).
+  * Opacity fades from `0` to `1` with `ease-in-out` in **`500ms`**.
+* **Mobile Menu Close**:
+  * Slides up out of view (`translateY(-100%)`).
+  * Opacity fades from `1` to `0` with `ease-in-out` in **`300ms`**.
+* **Backdrop Overlay (Task 1.3)**:
+  * Full-bleed semi-transparent whitish wash behind the drawer.
+  * Tapping the overlay or any navigation link automatically closes the menu.
+* **Illustration Container**:
+  * Fixed height of `624px` with `overflow: clip`, scaling fluidly with column width.
+
+---
+
+## Getting Started
+
+### Prerequisites
+* Node.js `20.19+` or `22.12+` (or Node.js 20.18+)
+* npm `10+`
+
+### Installation
+```bash
+npm install
+```
+
+### Development Server
+```bash
+npm run dev
+```
+
+### Type Check & Production Build
+```bash
+npm run build
+```
+
+### Linter
+```bash
+npm run lint
 ```
