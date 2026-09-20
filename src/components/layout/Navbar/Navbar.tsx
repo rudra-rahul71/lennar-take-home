@@ -1,9 +1,13 @@
+import { useState } from 'react';
 import logo from '../../../assets/logo.png';
 import menuIcon from '../../../assets/menu.png';
+import { MobileDrawer } from './MobileDrawer';
 import { NAV_ITEMS } from './Navbar.data';
 import styles from './Navbar.module.css';
 
 export function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <header className={styles.header}>
       <div className={styles.navContainer}>
@@ -37,6 +41,9 @@ export function Navbar() {
         <button
           type="button"
           className={styles.hamburgerButton}
+          onClick={() => setIsOpen(true)}
+          aria-expanded={isOpen}
+          aria-controls="mobile-navigation"
           aria-label="Open navigation menu"
         >
           <img
@@ -46,6 +53,8 @@ export function Navbar() {
           />
         </button>
       </div>
+
+      <MobileDrawer isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </header>
   );
 }
