@@ -1,7 +1,5 @@
+import { HeroSection } from '../../features/hero/components/HeroSection/HeroSection';
+
 export function HomePage() {
-  return (
-    <section>
-      {/* Hero section will be mounted here */}
-    </section>
-  );
+  return <HeroSection />;
 }

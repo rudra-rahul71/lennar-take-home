@@ -1,0 +1,33 @@
+.heading {
+  margin-top: 24px;
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 72px;
+  color: var(--color-white);
+}
+
+.highlight {
+  display: block;
+  color: var(--color-indigo-400);
+}
+
+.bodyCopy {
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 28px;
+  color: var(--color-gray-300);
+}
+
+@media (max-width: 833px) {
+  .heading {
+    font-size: 36px;
+    line-height: 40px;
+    letter-spacing: -2.5px;
+  }
+
+  .bodyCopy {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}

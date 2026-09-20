@@ -1,0 +1,39 @@
+.callout {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  background-color: var(--color-black);
+  border-radius: 14px;
+  padding: 4px 8px 4px 4px;
+  text-decoration: none;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--color-indigo-500);
+  border-radius: 10px;
+  padding: 2px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--color-white);
+}
+
+.linkText {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--color-white);
+}
+
+.chevron {
+  /* spec suggests 20 X 20 chevron. I dont think this is correct based on mock up */
+  width: 8px;
+  height: 12px;
+}
