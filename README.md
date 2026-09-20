@@ -27,7 +27,7 @@ src/
 │   └── layout/
 │       ├── Navbar/          # Desktop navigation & mobile trigger
 │       │   ├── MobileDrawer/# Animated slide-down drawer & backdrop overlay (Tasks 1.2 & 1.3)
-│       │   └── Navbar.data  # Single source of truth for navigation links
+│       │   └── Navbar.data.ts # Single source of truth for navigation links
 │       └── RootLayout/      # Layout shell rendering <Navbar /> and <Outlet />
 ├── features/
 │   └── hero/
@@ -41,8 +41,10 @@ src/
 ├── router/                  # createBrowserRouter route tree definition
 ├── services/
 │   └── trial.service.ts     # Angular-style TrialService class & root singleton
-└── styles/
-    └── main.css             # Global tokens, box-sizing reset, and base styles
+├── styles/
+│   └── main.css             # Global tokens, box-sizing reset, and base styles
+├── App.tsx                  # Root RouterProvider configuration
+└── main.tsx                 # Application entrypoint & DOM mount
 ```
 
 ---
@@ -82,7 +84,7 @@ The "Start free trial" action is implemented using a GraphQL mutation connected 
 
 * **Service Class Pattern (`TrialService`)**: Modeled after Angular's injectable service architecture (`src/services/trial.service.ts`). Encapsulates the `createUser` GraphQL mutation (`POST` request with typed variables) and exposes a root singleton instance `trialService`.
 * **Zero External Dependencies**: Implemented using native `fetch` rather than adding bulky client libraries (Apollo / URQL).
-* **State Management & Feedback**: Handles reactive `idle`, `loading`, `success`, and `error` states with accessible status announcements (`role="status"` and `role="alert"`). The submit button disables during network dispatch and displays dynamic status text (`"Starting..."`).
+* **State Management & Feedback**: Handles reactive `idle`, `loading`, `success`, and `error` states with accessible status announcements (`role="status"` and `role="alert"`). The submit button disables during network dispatch and displays dynamic status text (`"Loading..."`).
 * **Header & Drawer CTA Linking**: Clicking "Start free trial" in the desktop Navbar or the Mobile Drawer smoothly scrolls and focuses the Hero email input field.
 
 ---
@@ -90,7 +92,7 @@ The "Start free trial" action is implemented using a GraphQL mutation connected 
 ## Getting Started
 
 ### Prerequisites
-* Node.js `20.19+` or `22.12+` (or Node.js 20.18+)
+* Node.js `20.19+` or `22.12+` (required by Vite 8; Node.js `20.18+` will run with a compatibility warning)
 * npm `10+`
 
 ### Installation
